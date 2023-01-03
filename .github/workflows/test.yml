@@ -23,21 +23,19 @@ jobs:
           import os
           import json
           import yaml
-
-          images = [
-            {
-              'name': 'True',
-              'push': True
-            },
-            {
-              'name': 'False',
-              'push': False
-            },
-            {
-              'name': 'Empty',
-            }
-          ]
-          images_json = json.dumps(images)
+          
+          class Image():
+            def __init__(
+              self,
+              name,
+              push=True,
+            ) 
+          
+          images = []
+          with open("images.yml", "r") as stream:
+            images.extend(yaml.safe_load(stream)['images'])
+          
+          images_json = json.dumps([Image(image.name, image.push) for image in images])
           with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             print(f'include={images_json}', file=f)
 
