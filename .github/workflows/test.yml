@@ -24,7 +24,9 @@ jobs:
           import yaml
           
           class Image():
-            def __init__(self, name, push=True) 
+            def __init__(self, name, push=True):
+              self.name = name
+              self.push = push
           
           images = []
           with open("images.yml", "r") as stream:
