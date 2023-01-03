@@ -51,5 +51,5 @@ jobs:
     steps:
       - name: ${{ matrix.name }}
         run: echo "${{ matrix.push }}"
-      - if: ${{ matrix.push != false }}
+      - if: ${{ matrix.push != 'false' }}
         run: exit 1
