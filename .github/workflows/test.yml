@@ -18,6 +18,8 @@ jobs:
           - site: "staging"
             datacenter: "site-b"
     steps:
+      - run: echo "${{ matrix.push != false }}"
+      - run: echo "${{ matrix.push != 'false' }}"
       - run: echo "${{ matrix.push }}"
       - if: ${{ matrix.push != false }}
         run: echo "${{ matrix.site }}"
