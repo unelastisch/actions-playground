@@ -49,7 +49,7 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.create-matrix.outputs.include) }}
     steps:
-      - run: echo "${{ false == '' }}"
+      - run: echo "${{ fromJSON(matrix.push) == '' }}"
       - run: echo "${{ matrix.push }}"
       - if: ${{ matrix.push == '' || matrix.push == true }}
         run: exit 1
