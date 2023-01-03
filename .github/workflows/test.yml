@@ -32,7 +32,7 @@ jobs:
           with open("images.yml", "r") as stream:
             images.extend(yaml.safe_load(stream)['images'])
           
-          images_json = json.dumps([Image(image['name'], image['push'] if 'push' in image else true) for image in images])
+          images_json = json.dumps([Image(image['name'], image['push'] if 'push' in image else True) for image in images])
           with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             print(f'include={images_json}', file=f)
 
