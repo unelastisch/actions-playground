@@ -47,8 +47,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJson(needs.create-matrix.outputs.include )}}
+        include: ${{ fromJson(needs.create-matrix.outputs.include) }}
     steps:
+      - run: echo "${{ needs.create-matrix.outputs.include }}"
       - name: ${{ matrix.name }}
         run: echo "${{ matrix.push }}"
       - if: ${{ matrix.push == '' || matrix.push == 'true' }}
