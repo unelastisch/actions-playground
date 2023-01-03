@@ -1,0 +1,22 @@
+name: test
+
+on:
+  pull_request:
+    branches: 
+      - main
+  workflow_dispatch:
+  
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - site: "production"
+            datacenter: "site-a"
+            push: false
+          - site: "staging"
+            datacenter: "site-b"
+    steps:
+      - if: ${{ matrix.push != false }}
+        run: echo "${{ matrix.site }}"
