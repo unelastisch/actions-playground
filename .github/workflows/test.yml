@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
   
 jobs:
-
   create-matrix:
     name: Create Matrix
     runs-on: ubuntu-latest
@@ -28,7 +27,7 @@ jobs:
             def __init__(
               self,
               name,
-              push=True,
+              push=True
             ) 
           
           images = []
