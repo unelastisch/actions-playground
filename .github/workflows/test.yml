@@ -23,4 +23,4 @@ jobs:
     steps:
       - run: echo "${{ matrix.push }}"
       - if: ${{ matrix.push != 'false' }}
-        run: echo "${{ matrix.site }}"
+        run: exit 1
