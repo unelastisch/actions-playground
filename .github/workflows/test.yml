@@ -21,8 +21,5 @@ jobs:
             datacenter: "site-c"
             push: true
     steps:
-      - run: echo "${{ matrix.push != false }}"
-      - run: echo "${{ matrix.push != 'false' }}"
-      - run: echo "${{ matrix.push }}"
-      - if: ${{ matrix.push != false }}
+      - if: ${{ matrix.push != 'false' }}
         run: echo "${{ matrix.site }}"
