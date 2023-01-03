@@ -49,5 +49,6 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.create-matrix.outputs.include) }}
     steps:
+      - run: echo "${{ matrix.push }}"
       - if: ${{ matrix.push == ''  || matrix.push }}
         run: exit 1
