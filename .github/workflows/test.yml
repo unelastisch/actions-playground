@@ -22,5 +22,5 @@ jobs:
             push: true
     steps:
       - run: echo "${{ matrix.push }}"
-      - if: ${{ matrix.push != 'false' }}
+      - if: ${{ matrix.push != false' }}
         run: exit 1
