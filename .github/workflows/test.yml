@@ -7,20 +7,48 @@ on:
   workflow_dispatch:
   
 jobs:
+
+  create-matrix:
+    name: Create Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      include: ${{ steps.create-matrix.outputs.include }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip install pyyaml
+      - name: Create Matrix
+        id: create-matrix
+        shell: python
+        run: |
+          import os
+          import json
+          import yaml
+
+          images = [
+            {
+              'name': 'True',
+              'push': True
+            },
+            {
+              'name': 'False',
+              'push': False
+            },
+            {
+              'name': 'Empty',
+            }
+          ]
+          images_json = json.dumps(images)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            print(f'include={images_json}', file=f)
+
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        include:
-          - site: "production"
-            datacenter: "site-a"
-            push: false
-          - site: "staging"
-            datacenter: "site-b"
-          - site: "dev"
-            datacenter: "site-c"
-            push: true
+        include: ${{ fromJson(needs.create-matrix.outputs.include )}}
     steps:
-      - run: echo "${{ matrix.push }}"
+      - name: ${{ matrix.name }}
+        run: echo "${{ matrix.push }}"
       - if: ${{ matrix.push != false }}
         run: exit 1
