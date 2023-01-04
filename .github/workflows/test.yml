@@ -45,7 +45,8 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.create-matrix.outputs.include) }}
     steps:
-      - run: echo "${{ false == '' }}"
+      - run: |
+          echo "PUSH=${{ matrix.push }}" >> $GITHUB_ENV
       - run: echo "${{ matrix.push }}"
-      - if: ${{ matrix.push }}
+      - if: ${{ env.PUSH }}
         run: exit 1
