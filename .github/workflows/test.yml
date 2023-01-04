@@ -48,5 +48,5 @@ jobs:
       - run: |
           echo "PUSH=${{ matrix.push }}" >> $GITHUB_ENV
       - run: echo "${{ matrix.push }}"
-      - if: ${{ env.PUSH }}
+      - if: ${{ env.PUSH  != 'false' }}
         run: exit 1
