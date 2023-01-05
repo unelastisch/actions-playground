@@ -7,48 +7,11 @@ on:
   workflow_dispatch:
   
 jobs:
-  create-matrix:
-    name: Create Matrix
-    runs-on: ubuntu-latest
-    outputs:
-      include: ${{ steps.create-matrix.outputs.include }}
-    steps:
-      - uses: actions/checkout@v3
-      - run: pip install pyyaml
-      - name: Create Matrix
-        id: create-matrix
-        shell: python
-        run: |
-          import os
-          import json
-          import yaml
-          
-          def create_image(name, push=True):
-            return {
-              'name': name,
-              'push': push
-            }
-          
-          images = []
-          with open("images.yml", "r") as stream:
-            images.extend(yaml.safe_load(stream)['images'])            
-          
-          images_json = json.dumps([create_image(image.get('name'), image.get('push')) for image in images])
-          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-            print(f'include={images_json}', file=f)
-
   test:
-    runs-on: ubuntu-latest
-    needs: create-matrix
-    strategy:
-      fail-fast: false
-      matrix:
-        include: ${{ fromJson(needs.create-matrix.outputs.include) }}
+    defaults:
+      run:
+        working-directory: foo
+
     steps:
-      - name: okay
-        run: echo "${{ null == false }}"
-      - run: |
-          echo "PUSH=${{ matrix.push }}" >> $GITHUB_ENV
-      - run: echo "${{ matrix.push }}"
-      - if: ${{ env.PUSH  != 'false' }}
-        run: exit 1
+      - run: cat bar.txt
+      - run: cat bar.txt
