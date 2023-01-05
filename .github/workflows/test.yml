@@ -13,6 +13,7 @@ jobs:
       run:
         working-directory: ./foo
     steps:
+      - uses: actions/checkout@v3
       - run: pwd
       - run: cat bar.txt
       - run: cat bar.txt
