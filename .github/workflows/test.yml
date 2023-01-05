@@ -12,7 +12,7 @@ jobs:
     defaults:
       run:
         working-directory: ./foo
-
     steps:
+      - run: pwd
       - run: cat bar.txt
       - run: cat bar.txt
