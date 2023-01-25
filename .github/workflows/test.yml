@@ -16,4 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - run: pwd
       - run: cat bar.txt
-      - run: cat bar.txt
+      - run: exit 1;
+      - if: success()
+        run: echo "Success"
+      - if: failure()
+        run: echo "Failure"
