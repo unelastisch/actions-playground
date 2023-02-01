@@ -1,0 +1,6 @@
+images:
+  - name: "False"
+    push: false
+  - name: "True"
+    push: true
+  - name: "Empty"

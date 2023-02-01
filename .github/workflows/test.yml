@@ -9,17 +9,22 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - site: "production"
-            datacenter: "site-a"
-            push: false
-          - site: "staging"
-            datacenter: "site-b"
-          - site: "dev"
-            datacenter: "site-c"
-            push: true
     steps:
-      - if: ${{ matrix.push != 'false' }}
-        run: echo "${{ matrix.site }}"
+      - uses: actions/checkout@v3
+      - run: exit 0;
+      - if: always()
+        uses: ./actions/notify-build-status
+        with:
+          vaultUrl: ${{ secrets.VAULT_ADDR }}
+          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
+          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
+          slackChannel: U04D1K9UPFB
+      - run: exit 1;
+      - if: always()
+        uses: ./actions/notify-build-status
+        with:
+          vaultUrl: ${{ secrets.VAULT_ADDR }}
+          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
+          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
+          slackChannel: U04D1K9UPFB
+
