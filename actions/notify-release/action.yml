@@ -1,0 +1,55 @@
+name: notify-release
+description: "Notify the release status"
+
+inputs:
+  vaultUrl:
+    description: Vault URL
+    required: true
+  vaultRoleId:
+    description: Vault role ID
+    required: true
+  vaultSecretId:
+    description: Vault secret ID
+    required: true
+  slackChannel:
+    description: Slack channel
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Get the Slack token from Vault
+      uses: hashicorp/vault-action@v2.4.2
+      with:
+        url: ${{ inputs.vaultUrl }}
+        roleId: ${{ inputs.vaultRoleId }}
+        secretId: ${{ inputs.vaultSecretId }}
+        method: approle
+        secrets: |
+          secret/observability-team/ci/stack-integartion-token integration_token | SLACK_BOT_TOKEN
+    - name: Prepare outputs
+      shell: python
+      run: |
+
+        COLOR=
+
+    - name: Processing message
+      uses: slackapi/slack-github-action@v1.22.0
+      with:
+        channel-id: '${{ inputs.slackChannel }}'
+        payload: |
+          {
+            attachments: [
+              {
+                "pretext": "hello",
+                "color": "good",
+                "fields": [
+                  {
+                    "title": "Status",
+                    "short": true,
+                    "value": "In Progress"
+                  }
+                ]
+              }
+            ]
+          }

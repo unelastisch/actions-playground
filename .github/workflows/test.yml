@@ -14,4 +14,9 @@ jobs:
       - run: exit 1;
       - if: always()
         uses: ./actions/build-status
+        with:
+          vaultUrl: ${{ secrets.VAULT_ADDR }}
+          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
+          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
+          slackChannel: U04D1K9UPFB
 
