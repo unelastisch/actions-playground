@@ -56,13 +56,18 @@ runs:
           {
             "attachments": [
               {
-                "pretext": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Workflow> triggered by <${{ github.server_url}}/${{ github.actor }}|${{ github.actor }}>",
+                "pretext": "Workflow <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}> triggered by <${{ github.server_url}}/${{ github.actor }}|${{ github.actor }}>",
                 "color": "",
                 "fields": [
                   {
                     "title": "Status",
                     "short": true,
                     "value": "${{ job.status }}"
+                  },
+                  {
+                    "title": "Event",
+                    "short": true,
+                    "value": "${{ github.event_name	}}"
                   },
                   {
                     "title": "Ref",
