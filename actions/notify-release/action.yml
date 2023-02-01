@@ -27,11 +27,11 @@ runs:
         method: approle
         secrets: |
           secret/observability-team/ci/stack-integartion-token integration_token | SLACK_BOT_TOKEN
-    - name: Prepare outputs
-      shell: python
-      run: |
-
-        COLOR=
+#    - name: Prepare outputs
+#      shell: python
+#      run: |
+#
+#        COLOR=
 
     - name: Processing message
       uses: slackapi/slack-github-action@v1.22.0
