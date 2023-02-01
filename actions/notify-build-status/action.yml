@@ -33,22 +33,27 @@ runs:
       run: |
         import os
         
+        job_status = "${{ job.status }}"
+        repo_url = "${{ github.server_url }}/${{ github.repository }}"
+        pr_number = "${{ github.event.pull_request.number }}"
+        run_id = "${{ github.run_id }}"
+        run_attempt = "${{ github.run_attempt }}"
+        event_name = "${{ github.event_name }}"
+        is_pull_request = event_name == 'pull_request'
+        sha = "${{ github.event.pull_request.head.sha }}" if is_pull_request else "${{ github.sha }}"
+        
         # Keys taken from https://docs.github.com/en/actions/learn-github-actions/contexts#job-context
         color_status_map = {
           "success": "good",
           "failure": "danger",
           "cancelled": "", # grey
         }
-        
-        is_pull_request = "${{ github.event_name }}" == 'pull_request'
-        
-        sha = "${{ github.event.pull_request.head.sha }}" if is_pull_request else "${{ github.sha }}"
                 
         data = {
-          "color": color_status_map["${{ job.status }}"],
+          "color": color_status_map["job_status"],
           "short_sha": sha[:7],
-          "commit_url": f"${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}/commits/{sha}" if is_pull_request else f"${{ github.server_url }}/${{ github.repository }}/commit/{sha}",
-          "run_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}",
+          "commit_url": f"{repo_url}/pull/{pr_number}/commits/{sha}" if is_pull_request else f"{repo_url}/commit/{sha}",
+          "run_url": f"{repo_url}/actions/runs/{run_id}/attempts/{run_attempt}",
         }
         
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
