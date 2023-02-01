@@ -43,7 +43,7 @@ runs:
         data = {
           "color": color_status_map["${{ job.status }}"],
           "short_sha": "${{ github.sha }}"[:7],
-          "run_url: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}",
+          "run_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}",
         }
         
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
