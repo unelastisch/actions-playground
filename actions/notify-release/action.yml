@@ -60,7 +60,7 @@ runs:
                     "value": "${{ github.sha }}"
                   }
                 ],
-                footer: "${{ github.repository }}"
+                "footer": "${{ github.repository }}"
               }
             ]
           }
