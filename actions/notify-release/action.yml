@@ -39,7 +39,7 @@ runs:
         }
         
         data = {
-          "color": color_status_map["${{ job.status}}"],
+          "color": color_status_map["${{ job.status }}"],
           "short_sha": "${{ github.sha }}"[:7]
         }
         
@@ -70,10 +70,15 @@ runs:
                   {
                     "title": "Commit",
                     "short": true,
-                    "value": "<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|`${{ steps.prepare.outputs.short_sha }}`>"
+                    "value": "<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|`${{ steps.prepare.outputs.short_sha }}`>"
+                  },
+                  {
+                    "title": "Workflow",
+                    "short": false,
+                    "value": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}>"
                   }
                 ],
-                "footer": "<https://github.com/${{ github.repository }}|${{ github.repository }}>",
+                "footer": "<${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>",
                 "footer_icon": "https://slack-imgs.com/?c=1&o1=wi32.he32.si&url=https%3A%2F%2Fslack.github.com%2Fstatic%2Fimg%2Ffavicon-neutral.png"
               }
             ]
