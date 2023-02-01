@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: exit 1;
       - if: always()
-        uses: ./actions/build-status
+        uses: ./actions/notify-release
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
