@@ -33,9 +33,11 @@ runs:
       run: |
         import os
         
+        # Keys taken from https://docs.github.com/en/actions/learn-github-actions/contexts#job-context
         color_status_map = {
           "success": "good",
           "failure": "danger",
+          "cancelled" "", # grey
         }
         
         data = {
@@ -55,7 +57,7 @@ runs:
             "attachments": [
               {
                 "pretext": "${{ github.repository }} release ${{ github.ref_name }}",
-                "color": "${{ steps.prepare.outputs.color }}",
+                "color": "",
                 "fields": [
                   {
                     "title": "Status",
