@@ -48,7 +48,12 @@ runs:
                     "title": "Status",
                     "short": true,
                     "value": "${{ job.status }}"
-                  }
+                  },
+                  {
+                    "title": "Ref",
+                    "short": true,
+                    "value": "${{ github.ref_name }}"
+                  },
                 ]
               }
             ]
