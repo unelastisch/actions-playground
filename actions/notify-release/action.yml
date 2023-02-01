@@ -41,7 +41,7 @@ runs:
           {
             "attachments": [
               {
-                "pretext": "Deployment started",
+                "title": "${{ github.repository }} release ${{ github.ref_name }}",
                 "color": "good",
                 "fields": [
                   {
