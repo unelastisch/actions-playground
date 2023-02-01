@@ -35,7 +35,7 @@ runs:
         
         color_status_map = {
           "success": "good",
-          "failure": "danger,
+          "failure": "danger",
         }
         
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
