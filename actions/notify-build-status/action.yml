@@ -40,7 +40,7 @@ runs:
           "cancelled": "", # grey
         }
         
-        commit_sha = "${{ github.event.pull_request.head.sha }}" if "${{ github.event_name == 'pull_request' }} else "${{ github.sha }}"
+        commit_sha = "${{ github.event.pull_request.head.sha }}" if "${{ github.event_name }}" == 'pull_request' else "${{ github.sha }}"
         
         data = {
           "color": color_status_map["${{ job.status }}"],
