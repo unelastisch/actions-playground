@@ -38,10 +38,14 @@ runs:
           "failure": "danger",
         }
         
-        color = color_status_map["${{ job.status}}"]
+        data = {
+          "color: color_status_map["${{ job.status}}"],
+          "short_sha": "${{ github.sha }}"[:7]
+        }
         
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-            print(f'color={color}', file=f)
+            for key, value in data.items():
+              print(f'{key}={value}', file=f)
 
     - uses: slackapi/slack-github-action@v1.22.0
       with:
@@ -66,7 +70,7 @@ runs:
                   {
                     "title": "Commit",
                     "short": true,
-                    "value": "${{ github.sha }}"
+                    "value": "<https://github.com/${{ github.repository }}/commit/${{ github.sha }}|`${{ steps.prepare.outputs.short_sha }}`>"
                   }
                 ],
                 "footer": "<https://github.com/${{ github.repository }}|${{ github.repository }}>",
