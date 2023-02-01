@@ -79,7 +79,7 @@ runs:
                   {
                     "title": "Commit",
                     "short": true,
-                    "value": "<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|`${{ steps.prepare.outputs.short_sha }}`>"
+                    "value": "<${{ steps.prepare.outputs.commit_url }}|`${{ steps.prepare.outputs.short_sha }}`>"
                   },
                   {
                     "title": "Workflow",
