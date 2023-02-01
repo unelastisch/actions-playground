@@ -50,7 +50,7 @@ runs:
         }
                 
         data = {
-          "color": color_status_map["job_status"],
+          "color": color_status_map[job_status],
           "short_sha": sha[:7],
           "commit_url": f"{repo_url}/pull/{pr_number}/commits/{sha}" if is_pull_request else f"{repo_url}/commit/{sha}",
           "run_url": f"{repo_url}/actions/runs/{run_id}/attempts/{run_attempt}",
