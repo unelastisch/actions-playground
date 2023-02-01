@@ -41,7 +41,7 @@ runs:
           {
             "attachments": [
               {
-                "title": "${{ github.repository }} release ${{ github.ref_name }}",
+                "pretext": "${{ github.repository }} release ${{ github.ref_name }}",
                 "color": "good",
                 "fields": [
                   {
@@ -53,8 +53,14 @@ runs:
                     "title": "Ref",
                     "short": true,
                     "value": "${{ github.ref_name }}"
-                  }
-                ]
+                  },
+                  {
+                    "title": "Commit",
+                    "short": true,
+                    "value": "${{ github.sha }}"
+                  },
+                ],
+                footer: "${{ github.repository }}"
               }
             ]
           }
