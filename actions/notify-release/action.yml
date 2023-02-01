@@ -38,8 +38,10 @@ runs:
           "failure": "danger",
         }
         
+        color = color_status_map["${{ job.status}}"]
+        
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-            print(f'color={color_status_map['${{ job.status}}']}', file=f)
+            print(f'color={color}', file=f)
 
     - uses: slackapi/slack-github-action@v1.22.0
       with:
