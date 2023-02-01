@@ -1,0 +1,8 @@
+name: build-status
+description: "foo"
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: echo "Hello World"

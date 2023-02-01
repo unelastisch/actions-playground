@@ -9,15 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./foo
     steps:
-      - uses: actions/checkout@v3
-      - run: pwd
-      - run: cat bar.txt
-      - run: exit 0;
-      - if: success()
-        run: echo "Success"
-      - if: failure()
-        run: echo "Failure"
+      - run: exit 1;
+      - if: always()
+        uses: ./actions/build-status
+
