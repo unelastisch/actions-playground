@@ -39,11 +39,13 @@ runs:
           "failure": "danger",
           "cancelled": "", # grey
         }
+        
+        sha = "${{ github.event.pull_request.head.sha }}" if "${{ github.event_name }}" == 'pull_request' else "${{ github.sha }}"
                 
         data = {
           "color": color_status_map["${{ job.status }}"],
-          "short_sha": "${{ github.event.pull_request.head.sha }}"[:7] if "${{ github.event_name }}" == 'pull_request' else "${{ github.sha }}"[:7],
-          "commit_url": "${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}/commits/${{ github.sha }}" if "${{ github.event_name }}" == 'pull_request' else "${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}",
+          "short_sha": sha[:7],
+          "commit_url": f"${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}/commits/{sha}" if "${{ github.event_name }}" == 'pull_request' else f"${{ github.server_url }}/${{ github.repository }}/commit/{sha}",
           "run_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}",
         }
         
