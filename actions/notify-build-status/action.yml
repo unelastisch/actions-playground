@@ -83,7 +83,7 @@ runs:
                   {
                     "title": "Workflow",
                     "short": false,
-                    "value": "<${{ steps.prepare.outputs.run_url }}|${{ github.workflow }} #${{ github.run_id }}>"
+                    "value": "<${{ steps.prepare.outputs.run_url }}|${{ github.workflow }} #${{ github.run_number }}>"
                   }
                 ],
                 "footer": "<${{ github.server_url }}/${{ github.repository }}|${{ github.repository }}>",
