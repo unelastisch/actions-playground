@@ -42,12 +42,12 @@ runs:
             "attachments": [
               {
                 "pretext": "Deployment started",
-                "color": "dbab09",
+                "color": "success",
                 "fields": [
                   {
                     "title": "Status",
                     "short": true,
-                    "value": "In Progress"
+                    "value": "${{ job.status }}"
                   }
                 ]
               }
