@@ -5,4 +5,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: echo '${{ toJson(github.job) }}'
+      run: echo '${{ toJson(job) }}'
