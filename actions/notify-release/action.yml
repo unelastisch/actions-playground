@@ -56,7 +56,7 @@ runs:
           {
             "attachments": [
               {
-                "pretext": "${{ github.repository }} release ${{ github.ref_name }}",
+                "pretext": "<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Workflow> triggered by <${{ github.server_url}}/${{ github.actor }}|${{ github.actor }}>",
                 "color": "",
                 "fields": [
                   {
