@@ -39,7 +39,7 @@ runs:
         }
         
         data = {
-          "color: color_status_map["${{ job.status}}"],
+          "color": color_status_map["${{ job.status}}"],
           "short_sha": "${{ github.sha }}"[:7]
         }
         
