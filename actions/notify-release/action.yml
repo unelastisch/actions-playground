@@ -42,7 +42,7 @@ runs:
             "attachments": [
               {
                 "pretext": "Deployment started",
-                "color": "success",
+                "color": "good",
                 "fields": [
                   {
                     "title": "Status",
