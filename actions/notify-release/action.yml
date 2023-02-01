@@ -58,7 +58,7 @@ runs:
                     "title": "Commit",
                     "short": true,
                     "value": "${{ github.sha }}"
-                  },
+                  }
                 ],
                 footer: "${{ github.repository }}"
               }
