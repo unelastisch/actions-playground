@@ -42,7 +42,7 @@ runs:
         
         data = {
           "color": color_status_map["${{ job.status }}"],
-          "short_sha": "${{ github.sha }}"[:7],
+          "short_sha": "${{ github.workflow_sha	 }}"[:7],
           "run_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}",
         }
         
