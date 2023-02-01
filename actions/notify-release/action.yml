@@ -27,14 +27,21 @@ runs:
         method: approle
         secrets: |
           secret/observability-team/ci/stack-integartion-token integration_token | SLACK_BOT_TOKEN
-#    - name: Prepare outputs
-#      shell: python
-#      run: |
-#
-#        COLOR=
+    - name: Prepare outputs
+      id: prepare
+      shell: python
+      run: |
+        import os
+        
+        color_status_map = {
+          "success": "good",
+          "failure": "danger,
+        }
+        
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            print(f'color={color_status_map['${{ job.status}}']}', file=f)
 
-    - name: Processing message
-      uses: slackapi/slack-github-action@v1.22.0
+    - uses: slackapi/slack-github-action@v1.22.0
       with:
         channel-id: '${{ inputs.slackChannel }}'
         payload: |
@@ -42,7 +49,7 @@ runs:
             "attachments": [
               {
                 "pretext": "${{ github.repository }} release ${{ github.ref_name }}",
-                "color": "good",
+                "color": "${{ steps.prepare.outputs.color }}",
                 "fields": [
                   {
                     "title": "Status",
