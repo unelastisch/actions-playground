@@ -57,7 +57,7 @@ runs:
             "attachments": [
               {
                 "pretext": "Workflow <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}> triggered by <${{ github.server_url}}/${{ github.actor }}|${{ github.actor }}>",
-                "color": "",
+                "color": "${{ steps.prepare.outputs.color }}",
                 "fields": [
                   {
                     "title": "Status",
