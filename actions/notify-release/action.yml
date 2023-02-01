@@ -39,10 +39,11 @@ runs:
         channel-id: '${{ inputs.slackChannel }}'
         payload: |
           {
-            attachments: [
+            "text": "Deployment started (In Progress)",
+            "attachments": [
               {
-                "pretext": "hello",
-                "color": "good",
+                "pretext": "Deployment started",
+                "color": "dbab09",
                 "fields": [
                   {
                     "title": "Status",
@@ -52,4 +53,4 @@ runs:
                 ]
               }
             ]
-          }
+        }
