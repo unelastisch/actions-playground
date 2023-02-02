@@ -1,8 +1,9 @@
 name: test
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  push:
+    tags:
+      - "v*.*.*"
 jobs:
   test:
     runs-on: ubuntu-latest
