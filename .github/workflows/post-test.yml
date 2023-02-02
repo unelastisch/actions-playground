@@ -6,11 +6,11 @@ on:
       - test
     types:
       - completed
-#    branches:
-#      - main
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hello"
+      - run: echo "${{ github.event.workflow_run.conclusion }}"
