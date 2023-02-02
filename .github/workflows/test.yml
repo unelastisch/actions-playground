@@ -1,12 +1,8 @@
 name: test
 
 on:
-  pull_request:
-    branches: 
-      - main
-  workflow_dispatch:
   schedule:
-    - cron: "* * * * *"
+    - cron: '*/2 * * * *'
 jobs:
   test:
     runs-on: ubuntu-latest
