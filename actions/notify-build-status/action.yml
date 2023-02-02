@@ -84,7 +84,7 @@ runs:
                   {
                     "title": "Ref",
                     "short": true,
-                    "value": "${{ github.ref_name }}"
+                    "value": "`${{ github.ref_name }}`"
                   },
                   {
                     "title": "Commit",
