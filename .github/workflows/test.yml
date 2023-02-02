@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: exit 0;
       - if: always()
-        uses: ./actions/notify-build-status
+        uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
@@ -19,7 +19,7 @@ jobs:
           slackChannel: U04D1K9UPFB
       - run: exit 1;
       - if: always()
-        uses: ./actions/notify-build-status
+        uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
