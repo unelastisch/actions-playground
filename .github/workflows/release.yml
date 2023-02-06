@@ -5,11 +5,11 @@ on:
     tags:
       - "v*.*.*"
 jobs:
-  packages:
-    uses: ./.github/workflows/packages.yml
+#  packages:
+#    uses: ./.github/workflows/packages.yml
   test:
-    needs:
-      - packages
+#    needs:
+#      - packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
