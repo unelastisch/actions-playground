@@ -5,10 +5,16 @@ on:
     tags:
       - "v*.*.*"
 jobs:
+  packages:
+    uses: .github/workflows/packages.yml
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: packages
+      - run: cat ref.txt
       - run: exit 0;
       - if: always()
         uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action

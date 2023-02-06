@@ -1,0 +1,16 @@
+name: packages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.ref_name }}"  > ref.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: packages
+          path: ref.txt
