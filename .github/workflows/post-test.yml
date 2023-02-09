@@ -8,7 +8,7 @@ on:
       - completed
 
 jobs:
-  test:
+  post-test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.event.workflow_run.conclusion }}"
