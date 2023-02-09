@@ -7,7 +7,7 @@ jobs:
   a:
     runs-on: ubuntu-latest
     steps:
-      - run: exit 1;
+      - run: exit 0;
   b:
     runs-on: ubuntu-latest
     steps:
