@@ -12,3 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.event.workflow_run.conclusion }}"
+      - uses: elastic/apm-pipeline-library/.github/actions/test-report@current
+        with:
+          artifact: test-results
+          name: JUnit Tests
+          path: "junit-example.xml"
+          reporter: java-junit
