@@ -1,0 +1,24 @@
+name: needs
+
+on:
+  pull_request: ~
+
+jobs:
+  a:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1;
+  b:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0;
+
+  c:
+    if: always()
+    needs:
+      - a
+      - b
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo '${{ toJSON(needs) }}'
