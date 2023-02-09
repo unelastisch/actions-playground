@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello"
+      - run: ls
       - uses: actions/upload-artifact@v3
         with:
           name: test-results
