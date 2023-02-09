@@ -20,5 +20,4 @@ jobs:
       - b
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo '${{ toJSON(needs) }}'
+      - run: test $(echo '${{ needs }}' | jq -s 'map(.[].result == "success") | all') = 'true'
