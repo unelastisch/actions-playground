@@ -1,0 +1,9 @@
+name: bar
+
+description: ok
+
+runs:
+  using: composite
+  steps:
+    - run: env
+      shell: bash

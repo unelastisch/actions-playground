@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: ./actions/bar
+        env:
+          HELLO: "WORLD"
       - uses: ./actions/foo
       - run: echo "hello"
       - run: ls
