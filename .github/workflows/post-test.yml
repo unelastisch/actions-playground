@@ -11,6 +11,10 @@ jobs:
   post-test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: hello
+          path: ok.txt
       - run: echo "${{ github.event.workflow_run.conclusion }}"
       - uses: elastic/apm-pipeline-library/.github/actions/test-report@current
         with:

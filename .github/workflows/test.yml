@@ -15,5 +15,9 @@ jobs:
       - run: ls
       - uses: actions/upload-artifact@v3
         with:
+          name: hello
+          path: ok.txt
+      - uses: actions/upload-artifact@v3
+        with:
           name: test-results
           path: "**/junit-example.xml"
