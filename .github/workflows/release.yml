@@ -19,7 +19,7 @@ jobs:
       - run: cat ref.txt
       - run: exit 0;
       - if: always()
-        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
+        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/additional-message-notify-build-status
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
@@ -28,7 +28,7 @@ jobs:
           message: Hello, World!
       - run: exit 1;
       - if: always()
-        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
+        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/additional-message-notify-build-status
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
