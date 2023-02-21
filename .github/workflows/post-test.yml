@@ -12,9 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo '${{ toJson(github.event.workflow_run) }}'
-      - run: gh run download ${{ github.event.workflow_run.id}} --name hello --repo "${GITHUB_REPOSITORY}"
+      - run: gh run download ${{ github.event.workflow_run.id}} --name hello --repo "${GITHUB_REPOSITORY}" --dir tmp
         env:
           GH_TOKEN: ${{ github.token }}
+      - run: echo ok.txt
       #      - uses: actions/download-artifact@v3
 #        with:
 #          name: hello
