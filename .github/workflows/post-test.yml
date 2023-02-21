@@ -15,7 +15,7 @@ jobs:
       - run: gh run download ${{ github.event.workflow_run.id}} --name hello --repo "${GITHUB_REPOSITORY}" --dir tmp
         env:
           GH_TOKEN: ${{ github.token }}
-      - run: echo ok.txt
+      - run: cat tmp/ok.txt
       #      - uses: actions/download-artifact@v3
 #        with:
 #          name: hello
