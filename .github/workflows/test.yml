@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: echo "hello"
       - run: ls
+      - run: echo "okay" > ok.txt
       - uses: actions/upload-artifact@v3
         with:
           name: hello
