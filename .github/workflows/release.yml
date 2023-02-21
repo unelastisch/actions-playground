@@ -19,15 +19,16 @@ jobs:
       - run: cat ref.txt
       - run: exit 0;
       - if: always()
-        uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
+        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
           vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
           slackChannel: U04D1K9UPFB
+          message: Hello, World!
       - run: exit 1;
       - if: always()
-        uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
+        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/notify-build-status-action
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
