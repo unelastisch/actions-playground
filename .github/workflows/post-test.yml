@@ -11,6 +11,7 @@ jobs:
   post-test:
     runs-on: ubuntu-latest
     steps:
+      - run: echo '${{ toJson(github.event.workflow_run) }}'
       - uses: actions/download-artifact@v3
         with:
           name: hello
