@@ -16,6 +16,8 @@ jobs:
           name: workflows
           path: .github/
       - run: echo "hello"
+      - run: exit 1;
+        continue-on-error: true
       - run: ls
       - run: echo "okay" > ok.txt
       - uses: actions/upload-artifact@v3
