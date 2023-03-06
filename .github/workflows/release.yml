@@ -37,7 +37,7 @@ jobs:
       - if: always()
         uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/needs-aware-notification
         with:
-          needs: ${{ fromJSON(needs) }}
+          needs: ${{ toJSON(needs) }}
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
           vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
@@ -47,7 +47,7 @@ jobs:
       - if: always()
         uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/needs-aware-notification
         with:
-          needs: ${{ fromJSON(needs) }}
+          needs: ${{ toJSON(needs) }}
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
           vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
