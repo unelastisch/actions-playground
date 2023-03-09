@@ -18,12 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: check
-        uses: elastic/apm-pipeline-library/.github/actions/check-dependent-jobs@current
+        uses: elastic/apm-pipeline-library/.github/actions/check-dependent-jobs@feature/add-ability-set-status-explicitly
         with:
           needs: ${{ toJSON(needs) }}
       - uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
         with:
-          status: "${{ steps.check.outputs.isSuccess == 'true' && 'success' || 'failure' }}"
+          status: "${{ steps.check.outputs.status }}"
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
           vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
