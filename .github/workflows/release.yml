@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: check
-        uses: elastic/apm-pipeline-library/.github/actions/check-dependent-jobs@feature/add-ability-set-status-explicitly
+        uses: reakaleek/apm-pipeline-library/.github/actions/check-dependent-jobs@feature/add-ability-set-status-explicitly
         with:
           needs: ${{ toJSON(needs) }}
       - uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
