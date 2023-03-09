@@ -21,6 +21,7 @@ jobs:
         uses: reakaleek/apm-pipeline-library/.github/actions/check-dependent-jobs@feature/add-ability-set-status-explicitly
         with:
           needs: ${{ toJSON(needs) }}
+      - run: echo '${{ steps.check.outputs.status }}'
       - uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
         with:
           status: "${{ steps.check.outputs.status }}"
