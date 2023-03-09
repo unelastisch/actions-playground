@@ -12,9 +12,15 @@ jobs:
       - run: exit 1;
 
   bar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1;
+
+  baz:
     if: always()
     needs:
       - foo
+      - bar
     runs-on: ubuntu-latest
     steps:
       - id: check
@@ -22,7 +28,7 @@ jobs:
         with: ${{ toJSON(needs) }}
       - uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
         with:
-          status: "${{ steps.check.outputs.isSuccess == 'true' && 'success' || 'failure' }}"
+          status: "${{ steps.check.outputs.isSuccess && 'success' || 'failure' }}"
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
           vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
