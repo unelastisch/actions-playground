@@ -5,6 +5,29 @@ on:
     tags:
       - "v*.*.*"
 jobs:
+
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1;
+
+  bar:
+    if: always()
+    needs:
+      - foo
+    runs-on: ubuntu-latest
+    steps:
+      - id: check
+        uses: elastic/apm-pipeline-library/.github/actions/check-dependent-jobs@current
+        with: ${{ toJSON(needs) }}
+      - uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
+        with:
+          status: "${{ steps.check.outputs.isSuccess ? 'success' : 'failure' }}"
+          vaultUrl: ${{ secrets.VAULT_ADDR }}
+          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
+          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
+          slackChannel: "U04D1K9UPFB"
+
   pre-test:
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +58,7 @@ jobs:
       - run: cat ref.txt
       - run: exit 0;
       - if: always()
-        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/needs-aware-notification
+        uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@current
         with:
           needs: ${{ toJSON(needs) }}
           vaultUrl: ${{ secrets.VAULT_ADDR }}
@@ -45,7 +68,7 @@ jobs:
           message: Hello, World!
       - run: exit 1;
       - if: always()
-        uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/needs-aware-notification
+        uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@current
         with:
           needs: ${{ toJSON(needs) }}
           vaultUrl: ${{ secrets.VAULT_ADDR }}
