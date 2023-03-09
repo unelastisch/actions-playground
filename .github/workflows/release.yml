@@ -20,9 +20,9 @@ jobs:
       - id: check
         uses: elastic/apm-pipeline-library/.github/actions/check-dependent-jobs@current
         with: ${{ toJSON(needs) }}
-      - uses: elastic/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
+      - uses: rekaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
         with:
-          status: "${{ steps.check.outputs.isSuccess ? 'success' : 'failure' }}"
+          status: "${{ steps.check.outputs.isSuccess && 'success' || 'failure' }}"
           vaultUrl: ${{ secrets.VAULT_ADDR }}
           vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
           vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
