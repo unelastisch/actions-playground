@@ -11,21 +11,16 @@ jobs:
     steps:
       - run: exit 1;
 
-  bar:
-    runs-on: ubuntu-latest
-    steps:
-      - run: exit 1;
-
   baz:
     if: always()
     needs:
       - foo
-      - bar
     runs-on: ubuntu-latest
     steps:
       - id: check
         uses: elastic/apm-pipeline-library/.github/actions/check-dependent-jobs@current
-        with: ${{ toJSON(needs) }}
+        with:
+          needs: ${{ toJSON(needs) }}
       - uses: reakaleek/apm-pipeline-library/.github/actions/notify-build-status@feature/add-ability-set-status-explicitly
         with:
           status: "${{ steps.check.outputs.isSuccess && 'success' || 'failure' }}"
