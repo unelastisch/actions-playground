@@ -12,6 +12,8 @@ jobs:
     container:
       image: ruby:2.6
     steps:
+      - name: Setup Git
+        uses: elastic/apm-pipeline-library/.github/actions/setup-git@current
       - run: git --version
   test:
     runs-on: ubuntu-latest
