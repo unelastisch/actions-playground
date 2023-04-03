@@ -7,6 +7,12 @@ on:
       - main
 
 jobs:
+  ruby:
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6
+    steps:
+      - run: git --version
   test:
     runs-on: ubuntu-latest
     steps:
