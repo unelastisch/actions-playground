@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: npm
-          node-version-file: .nvmrc
+          version: lts
       - uses: reakaleek/apm-pipeline-library/.github/actions/setup-npmrc@feature/setup-npmrc-action
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
