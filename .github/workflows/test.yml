@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v3
         with:
-          node-version: lts
+          node-version: 16
       - uses: reakaleek/apm-pipeline-library/.github/actions/setup-npmrc@feature/setup-npmrc-action
         with:
           vaultUrl: ${{ secrets.VAULT_ADDR }}
