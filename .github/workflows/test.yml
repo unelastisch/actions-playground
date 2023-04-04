@@ -7,14 +7,21 @@ on:
       - main
 
 jobs:
-  ruby:
+  npm:
     runs-on: ubuntu-latest
     container:
       image: ruby:2.6
     steps:
-      - name: Setup Git
-        uses: elastic/apm-pipeline-library/.github/actions/setup-git@current
-      - run: git --version
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version-file: .nvmrc
+      - uses: reakaleek/apm-pipeline-library/.github/actions/setup-npmrc@feature/setup-npmrc-action
+        with:
+          vaultUrl: ${{ secrets.VAULT_ADDR }}
+          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
+          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
+      - run: npm whoami
   test:
     runs-on: ubuntu-latest
     steps:
