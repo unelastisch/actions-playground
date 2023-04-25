@@ -14,5 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: echo "test-$(git rev-parse --short HEAD)" > what.txt
+      - run: git add what.txt
+      - run: git commit -am "What"
       - run: git tag "test-$(git rev-parse --short HEAD)"
       - run: git push --tags
