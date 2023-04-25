@@ -19,4 +19,4 @@ jobs:
       - uses: elastic/apm-pipeline-library/.github/actions/setup-git@current
       - run: git commit -am "What"
       - run: git tag "test-$(git rev-parse --short HEAD)"
-      - run: git push --follow-tags
+      - run: git push && git push --tags
