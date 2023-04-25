@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: echo "test-$(git rev-parse --short HEAD)" > what.txt
       - run: git add what.txt
+      - uses: elastic/apm-pipeline-library/.github/actions/setup-git@current
       - run: git commit -am "What"
       - run: git tag "test-$(git rev-parse --short HEAD)"
       - run: git push --tags
