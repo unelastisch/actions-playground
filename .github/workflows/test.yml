@@ -1,50 +1,25 @@
-name: test
-
 on:
-  pull_request: ~
   push:
     branches:
       - main
 
 jobs:
-  npm:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - uses: reakaleek/apm-pipeline-library/.github/actions/setup-npmrc@feature/setup-npmrc-action
-        with:
-          vaultUrl: ${{ secrets.VAULT_ADDR }}
-          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
-          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
-      - run: npm whoami
-  test:
+  create:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: mkdir -p a/b/c
+      - run: echo "hello" > a/b/c/d.txt
       - uses: actions/upload-artifact@v3
         with:
-          name: workflows
-          path: .github/
-      - run: echo "hello"
-      - run: exit 1;
-        continue-on-error: true
-      - run: ls
-      - run: echo "okay" > ok.txt
-      - uses: actions/upload-artifact@v3
-        with:
-          name: hello
-          path: ok.txt
-      - uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: "**/junit-example.xml"
-  ok:
-    needs: test
+          name: abc
+          path: ./a/
+          if-no-files-found: error
+  read:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
         with:
-          name: workflows
-      - run: ls -ll
+          name: test
+      - run: cat a/b/c/d.txt
