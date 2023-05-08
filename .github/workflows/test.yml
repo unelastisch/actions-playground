@@ -24,4 +24,5 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: abc
+          path: ./a
       - run: cat a/b/c/d.txt
