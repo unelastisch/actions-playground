@@ -23,5 +23,5 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
         with:
-          name: test
+          name: abc
       - run: cat a/b/c/d.txt
