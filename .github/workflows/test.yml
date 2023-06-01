@@ -4,25 +4,12 @@ on:
       - main
 
 jobs:
-  create:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: mkdir -p a/b/c
-      - run: echo "hello" > a/b/c/d.txt
-      - uses: actions/upload-artifact@v3
-        with:
-          name: abc
-          path: ./a/
-          if-no-files-found: error
-  read:
-    needs:
-      - create
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-        with:
-          name: abc
-          path: ./a
-      - run: cat a/b/c/d.txt
+      - run: pip install requests
+      - run: |
+          import requests
+          response = requests.get('https://www.google.com')
+          print(response)
+        shell: python
