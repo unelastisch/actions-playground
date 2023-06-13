@@ -6,11 +6,13 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - uses: elastic/apm-pipeline-library/.github/actions/setup-git@current
         with:
           username: "Jan Calanog"
           email: "jan.calanog@elastic.co"
+          token: ${{ secrets.GH_TOKEN }}
+      - uses: actions/checkout@v3
+        with:
           token: ${{ secrets.GH_TOKEN }}
       - run: echo "Hello $(date +%s)" >> world.txt
       - run: git add world.txt
