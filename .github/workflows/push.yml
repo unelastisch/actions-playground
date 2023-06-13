@@ -18,7 +18,7 @@ jobs:
           token: ${{ env.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ env.GITHUB_TOKEN }}
       - run: echo "Hello $(date +%s)" >> world.txt
       - run: git add world.txt
       - run: git commit -am helloworld
