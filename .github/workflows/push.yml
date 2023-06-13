@@ -12,7 +12,7 @@ jobs:
           username: "Jan Calanog"
           email: "jan.calanog@elastic.co"
           token: ${{ secrets.GH_TOKEN }}
-      - run: echo "Hello" >> world.txt
+      - run: echo "Hello $(date +%s)" >> world.txt
       - run: git add world.txt
       - run: git commit -am helloworld
       - run: git push
