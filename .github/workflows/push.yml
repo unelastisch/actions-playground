@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-#      - uses: elastic/apm-pipeline-library/.github/actions/setup-git@current
+      - uses: elastic/apm-pipeline-library/.github/actions/setup-git@current
 #        with:
 #          username: "Jan Calanog"
 #          email: "jan.calanog@elastic.co"
