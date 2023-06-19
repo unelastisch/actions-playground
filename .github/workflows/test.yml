@@ -10,5 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.sha }}
+      - run: echo '${{ toJSON(github) }}'
       - run: echo '${{ toJSON(github.event.pull_request) }}'
       - run: echo '${{ toJSON(github.event.pull_request.head.sha) }}'
