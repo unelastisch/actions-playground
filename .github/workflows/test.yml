@@ -1,5 +1,7 @@
+name: test
+
 on:
-  push:
+  pull_request_target:
     branches:
       - main
 
@@ -7,17 +9,4 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - id: buildkite
-        name: Run Deploy
-        uses: reakaleek/apm-pipeline-library/.github/actions/buildkite@feature/buildkite-download-artifacts
-        with:
-          vaultUrl: ${{ secrets.VAULT_ADDR }}
-          vaultRoleId: ${{ secrets.VAULT_ROLE_ID }}
-          vaultSecretId: ${{ secrets.VAULT_SECRET_ID }}
-          pipeline: apm-agent-java-snapshot
-          waitFor: true
-          printBuildLogs: false
-          artifactName: "lambda"
-          artifactPath: "**/elastic-apm-java-aws-lambda-layer-*.zip"
-          buildEnvVars: |
-            dry_run="true"
+      - run: echo ${{ github.sha }}
