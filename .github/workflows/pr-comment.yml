@@ -17,6 +17,11 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            
+            function sleep(ms) {
+              return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            
             const { repo, owner } = context.repo  
             const pullRequest = await github.rest.pulls.get({
               owner,
@@ -27,7 +32,17 @@ jobs:
             
             console.log(context)
             
-            github.rest.repos.createCommitStatus({
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha,
+              state: "pending",
+              context: `${context.workflow} / ${context.job}`
+            });
+            
+            await sleep(5000)
+            
+            await github.rest.repos.createCommitStatus({
               owner,
               repo,
               sha,
