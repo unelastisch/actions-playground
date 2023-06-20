@@ -27,13 +27,12 @@ jobs:
             
             console.log(context)
             
-            console.log(`${context.workflow} / ${context.job}`)
+            console.log()
 
-#            githu.rest.repos.createCommitStatus({
-#              owner,
-#              repo,
-#              sha,
-#              state,
-#              status: "success"
-#              context:
-#            });
+            githu.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              sha,
+              state: "success"
+              context: `${context.workflow} / ${context.job}`
+            });
