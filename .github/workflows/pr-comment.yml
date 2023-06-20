@@ -17,4 +17,13 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            console.log(context.issue.number)
+            const { repo, owner } = context.repo 
+            
+            const pullRequest = github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: context.issue.number,
+            });
+            
+            console.log(pullRequest)
+            
