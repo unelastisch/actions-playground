@@ -26,6 +26,8 @@ jobs:
             const sha = pullRequest.data.head.sha
             
             console.log(context)
+            
+            console.log(`${context.workflow} / ${context.job}`)
 
 #            githu.rest.repos.createCommitStatus({
 #              owner,
