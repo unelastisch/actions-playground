@@ -19,7 +19,7 @@ jobs:
           script: |
             const { repo, owner } = context.repo 
             
-            const pullRequest = github.rest.pulls.get({
+            const pullRequest = await github.rest.pulls.get({
               owner,
               repo,
               pull_number: context.issue.number,
