@@ -31,6 +31,6 @@ jobs:
               owner,
               repo,
               sha,
-              state: "success"
+              state: "success",
               context: `${context.workflow} / ${context.job}`
             });
