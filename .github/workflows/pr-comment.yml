@@ -17,13 +17,21 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const { repo, owner } = context.repo 
-            
+            const { repo, owner } = context.repo  
             const pullRequest = await github.rest.pulls.get({
               owner,
               repo,
               pull_number: context.issue.number,
             });
+            const sha = pullRequest.data.head.sha
             
-            console.log(pullRequest.data.head.sha)
-            
+            console.log(context
+
+#            githu.rest.repos.createCommitStatus({
+#              owner,
+#              repo,
+#              sha,
+#              state,
+#              status: "success"
+#              context:
+#            });
