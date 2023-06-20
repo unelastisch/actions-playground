@@ -8,7 +8,7 @@ on:
 jobs:
   heavy-test:
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment, '/test')}}
     steps:
       - run: echo '${{ toJSON(github.event) }}'
       - run: echo "Hello"
