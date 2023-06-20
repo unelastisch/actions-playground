@@ -13,3 +13,8 @@ jobs:
       - run: echo '${{ toJSON(github.event) }}'
       - run: echo "Hello"
       - run: echo '${{ secrets.FAKE_SECRET }}'
+      - name: set status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(context.issue.number)g
