@@ -17,4 +17,4 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            console.log(context.issue.number)g
+            console.log(context.issue.number)
