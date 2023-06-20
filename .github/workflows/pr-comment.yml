@@ -12,3 +12,4 @@ jobs:
     steps:
       - run: echo '${{ toJSON(github.event) }}'
       - run: echo "Hello"
+      - run: echo '${{ secrets.FAKE_SECRET }}'
