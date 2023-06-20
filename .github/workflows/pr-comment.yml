@@ -1,0 +1,13 @@
+name: heavy-test
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  heavy-test:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request }}
+    steps:
+      - run: echo "Hello"
