@@ -25,7 +25,7 @@ jobs:
             });
             const sha = pullRequest.data.head.sha
             
-            console.log(context)g
+            console.log(context)
 
 #            githu.rest.repos.createCommitStatus({
 #              owner,
