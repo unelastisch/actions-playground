@@ -25,5 +25,5 @@ jobs:
               pull_number: context.issue.number,
             });
             
-            console.log(pullRequest)
+            console.log(pullRequest.data.head.sha)
             
