@@ -2,7 +2,7 @@ name: test
 
 on:
   schedule:
-    - cron: '35 * * * *'
+    - cron: '* * * * *'
 #  workflow_dispatch:
 #    inputs:
 #      repository:
@@ -19,8 +19,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.ref }}
-          repository: ${{ github.event.inputs.repository }}
       - run: |
           echo "Test"
