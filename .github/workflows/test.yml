@@ -2,16 +2,17 @@ name: test
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '* * * * *'
   workflow_dispatch:
     inputs:
       repository:
         description: 'Repository to test'
         required: true
         default: reakaleek/actions-playground
-      sha:
+      ref:
         description: 'SHA to test'
         required: true
+        default: ~
 
 jobs:
   test:
@@ -19,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.inputs.sha || github.sha }}
+          ref: ${{ github.event.inputs.ref }}
           repository: ${{ github.event.inputs.repository }}
       - run: |
           echo "Test"
