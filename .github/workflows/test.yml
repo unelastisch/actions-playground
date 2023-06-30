@@ -1,15 +1,24 @@
 name: test
 
 on:
-  pull_request_target:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'Repository to test'
+        required: true
+        default: ${{ github.repository }}
+      sha:
+        description: 'SHA to test'
+        required: true
+        default: ${{ github.sha }}
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.sha }}
-      - run: echo '${{ toJSON(github) }}'
-      - run: echo '${{ toJSON(github.event.pull_request) }}'
-      - run: echo '${{ toJSON(github.event.pull_request.head.sha) }}'
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.sha }}
+          repository: ${{ github.event.inputs.repository }}
+      - run: |
+          echo "Test"
