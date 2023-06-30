@@ -6,11 +6,10 @@ on:
       repository:
         description: 'Repository to test'
         required: true
-        default: ${{ github.repository }}
+        default: reakaleek/actions-playground
       sha:
         description: 'SHA to test'
         required: true
-        default: ${{ github.sha }}
 
 jobs:
   test:
