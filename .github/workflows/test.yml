@@ -3,16 +3,16 @@ name: test
 on:
   schedule:
     - cron: '* * * * *'
-  workflow_dispatch:
-    inputs:
-      repository:
-        description: 'Repository to test'
-        required: true
-        default: reakaleek/actions-playground
-      ref:
-        description: 'SHA to test'
-        required: true
-        default: ~
+#  workflow_dispatch:
+#    inputs:
+#      repository:
+#        description: 'Repository to test'
+#        required: true
+#        default: reakaleek/actions-playground
+#      ref:
+#        description: 'SHA to test'
+#        required: true
+#        default: ~
 
 jobs:
   test:
