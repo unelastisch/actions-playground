@@ -1,0 +1,27 @@
+name: system-test-notification
+
+on:
+  pull_request_target:
+    types:
+      - opened
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    ## lol
+    # This job runs only if the pull request is from a forked repository.
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    steps:
+      - name: Add comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { repo, owner } = context.repo
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: context.issue.number,
+              body: |
+                > **Warn**
+                > System-tests were not executed for this PR.
+            });
