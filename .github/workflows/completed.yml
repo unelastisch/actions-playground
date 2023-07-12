@@ -13,15 +13,15 @@ jobs:
     steps:
       - name: debug
         run: echo '${{ toJSON(github) }}'
-#      - name: set status
-#        uses: actions/github-script@v6
-#        with:
-#          script: |
-#
-#            const { repo, owner } = context.repo
-#            await github.rest.issues.createComment({
-#              owner,
-#              repo,
-#              issue_number: context.issue.number,
-#              body: "Hello from GitHub Actions"
-#            });
+      - name: set status
+        uses: actions/github-script@v6
+        with:
+          script: |
+
+            const { repo, owner } = context.repo
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: context.issue.number,
+              body: "Hello from GitHub Actions"
+            });
