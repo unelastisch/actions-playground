@@ -2,6 +2,8 @@ name: completed
 
 on:
   workflow_run:
+    branches-ignore:
+      - main
     types:
       - completed
     workflows:
@@ -11,17 +13,19 @@ jobs:
   heavy-test:
     runs-on: ubuntu-latest
     steps:
-      - name: debug
-        run: echo '${{ toJSON(github) }}'
-#      - name: set status
-#        uses: actions/github-script@v6
-#        with:
-#          script: |
-#
-#            const { repo, owner } = context.repo
-#            await github.rest.issues.createComment({
-#              owner,
-#              repo,
-#              issue_number: context.issue.number,
-#              body: "Hello from GitHub Actions"
-#            });
+      - uses: actions/download-artifact@v3
+        with:
+          name: pr_num
+          path: ./pr_num.txt
+      - run: echo "pr_num=$(cat pr_num.txt)" >> $GITHUB_ENV
+      - name: set status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { repo, owner } = context.repo
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: process.env.pr_num,
+              body: "Hello from GitHub Actions"
+            });

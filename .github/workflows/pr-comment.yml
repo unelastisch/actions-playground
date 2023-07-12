@@ -16,6 +16,18 @@ jobs:
       - run: echo '${{ toJSON(github.event) }}'
       - run: echo "Hello"
       - run: echo '${{ secrets.FAKE_SECRET }}'
+
+      - name: Save the PR number in an artifact
+        env:
+          PR_NUM: ${{ github.event.number }}
+        run: echo $PR_NUM > pr_num.txt
+
+      - name: Upload the PR number
+        uses: actions/upload-artifact@v2
+        with:
+          name: pr_num
+          path: ./pr_num.txt
+
 #      - name: set status
 #        uses: actions/github-script@v6
 #        with:
