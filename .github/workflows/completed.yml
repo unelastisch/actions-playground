@@ -35,3 +35,11 @@ jobs:
               issue_number: process.env.pr_num,
               body: "Hello from GitHub Actions"
             });
+            
+            await github.rest.repos.createCommitStatus({
+              owner,
+              repo,
+              "${{ github.event.workflow_run.head_sha }}",
+              state: "pending",
+              context: `hello world`
+            });
