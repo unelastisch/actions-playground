@@ -24,7 +24,8 @@ jobs:
               owner,
               repo,
               issue_number: context.issue.number,
-              body: `> **Warning**
+              body: `
+            > **Warning**
             > System-tests will not be executed for this PR because it is from a forked repository.
             But it will still create a successful `system-test` status check.
             `
