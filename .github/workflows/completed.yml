@@ -12,6 +12,8 @@ on:
 jobs:
   heavy-test:
     runs-on: ubuntu-latest
+    permissions: 
+      issues: write
     steps:
       - name: Download artifacts
         env:
