@@ -1,2 +1,2 @@
-> Warning
+> Warning:
 > hehe ok
