@@ -27,6 +27,6 @@ jobs:
               body: `
             > **Warning**
             > System-tests will not be executed for this PR because it is from a forked repository. 
-            But it will still create a successful `system-test` status check.
+            But it will still create a successful system-test status check.
               `
             });
