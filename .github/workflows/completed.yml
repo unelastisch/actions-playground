@@ -20,8 +20,6 @@ jobs:
           gh run download ${{ github.event.workflow_run.id }}
           --name pr_num
           --repo "${GITHUB_REPOSITORY}" 
-          --dir .
-          --pattern pr_num.txt
       - run: echo "pr_num=$(cat pr_num.txt)" >> $GITHUB_ENV
       - name: set status
         uses: actions/github-script@v6
