@@ -39,7 +39,7 @@ jobs:
             await github.rest.repos.createCommitStatus({
               owner,
               repo,
-              "${{ github.event.workflow_run.head_sha }}",
+              sha: "${{ github.event.workflow_run.head_sha }}",
               state: "pending",
               context: `hello world`
             });
