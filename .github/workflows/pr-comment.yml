@@ -1,6 +1,7 @@
 name: heavy-test
 
 on:
+  pull_request: 
   issue_comment:
     types:
       - created
@@ -8,7 +9,7 @@ on:
 jobs:
   heavy-test:
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/test')}}
+#    if: ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/test')}}
     steps:
       - run: echo '${{ toJSON(github.event) }}'
       - run: echo "Hello"
