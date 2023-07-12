@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: debug
-        run: echo '${{ toJSON(github.event) }}'
+        run: echo '${{ toJSON(github) }}'
       - name: set status
         uses: actions/github-script@v6
         with:
