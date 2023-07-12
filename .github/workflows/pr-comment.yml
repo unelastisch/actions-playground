@@ -19,34 +19,43 @@ jobs:
         with:
           script: |
             
-            function sleep(ms) {
-              return new Promise(resolve => setTimeout(resolve, ms));
-            }
-            
-            const { repo, owner } = context.repo  
-            const pullRequest = await github.rest.pulls.get({
+            const { repo, owner } = context.repo
+            await github.rest.issues.createComment({
               owner,
               repo,
-              pull_number: context.issue.number,
-            });
-            const sha = pullRequest.data.head.sha
-            
-            console.log(context)
-            
-            await github.rest.repos.createCommitStatus({
-              owner,
-              repo,
-              sha,
-              state: "pending",
-              context: `${context.workflow} / ${context.job}`
+              issue_number: context.issue.number,
+              body: "Hello from GitHub Actions"
             });
             
-            await sleep(5000)
             
-            await github.rest.repos.createCommitStatus({
-              owner,
-              repo,
-              sha,
-              state: "success",
-              context: `${context.workflow} / ${context.job}`
-            });
+#            function sleep(ms) {
+#              return new Promise(resolve => setTimeout(resolve, ms));
+#            }
+#
+#            const { repo, owner } = context.repo
+#            const pullRequest = await github.rest.pulls.get({
+#              owner,
+#              repo,
+#              pull_number: context.issue.number,
+#            });
+#            const sha = pullRequest.data.head.sha
+#
+#            console.log(context)
+#
+#            await github.rest.repos.createCommitStatus({
+#              owner,
+#              repo,
+#              sha,
+#              state: "pending",
+#              context: `${context.workflow} / ${context.job}`
+#            });
+#
+#            await sleep(5000)
+#
+#            await github.rest.repos.createCommitStatus({
+#              owner,
+#              repo,
+#              sha,
+#              state: "success",
+#              context: `${context.workflow} / ${context.job}`
+#            });
