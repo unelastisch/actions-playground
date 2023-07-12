@@ -16,18 +16,18 @@ jobs:
       - run: echo '${{ toJSON(github.event) }}'
       - run: echo "Hello"
       - run: echo '${{ secrets.FAKE_SECRET }}'
-      - name: set status
-        uses: actions/github-script@v6
-        with:
-          script: |
-            
-            const { repo, owner } = context.repo
-            await github.rest.issues.createComment({
-              owner,
-              repo,
-              issue_number: context.issue.number,
-              body: "Hello from GitHub Actions"
-            });
+#      - name: set status
+#        uses: actions/github-script@v6
+#        with:
+#          script: |
+#
+#            const { repo, owner } = context.repo
+#            await github.rest.issues.createComment({
+#              owner,
+#              repo,
+#              issue_number: context.issue.number,
+#              body: "Hello from GitHub Actions"
+#            });
             
             
 #            function sleep(ms) {

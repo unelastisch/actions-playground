@@ -1,0 +1,27 @@
+name: completed
+
+on:
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - heavy-test
+
+jobs:
+  heavy-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: debug
+        run: echo '${{ toJSON(github.event) }}'
+#      - name: set status
+#        uses: actions/github-script@v6
+#        with:
+#          script: |
+#
+#            const { repo, owner } = context.repo
+#            await github.rest.issues.createComment({
+#              owner,
+#              repo,
+#              issue_number: context.issue.number,
+#              body: "Hello from GitHub Actions"
+#            });
