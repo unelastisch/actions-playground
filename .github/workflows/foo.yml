@@ -7,6 +7,12 @@ on:
       - reopened
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test I can modify the workflow
+        run: |
+          echo "Ye I can" 
   notify:
     # This job runs only if the pull request is from a forked repository.
     if: github.event.pull_request.head.repo.full_name != github.repository
