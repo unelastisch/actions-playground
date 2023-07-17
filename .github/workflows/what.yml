@@ -5,7 +5,6 @@ on:
         description: 'SemVer increment'
         required: true
         type: choice
-        default: minor
         options:
           - major
           - minor
