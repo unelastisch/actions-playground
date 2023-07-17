@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch:
+    inputs:
+      semver-increment:
+        description: 'SemVer increment'
+        required: true
+        type: choice
+        default: minor
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          SEMVER_INC: ${{ github.event.inputs.semver-increment }}
+        run: echo $SEMVER_INC
