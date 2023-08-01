@@ -1,0 +1,10 @@
+name: smoke-test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 300
