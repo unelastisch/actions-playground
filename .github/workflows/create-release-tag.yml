@@ -44,4 +44,4 @@ jobs:
       - name: Create "release" tag
         run: |
           git tag ${TAG_NAME} ${GITHUB_SHA}
-          git push "refs/tags/${TAG_NAME}"
+          git push origin "refs/tags/${TAG_NAME}"
