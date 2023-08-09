@@ -1,17 +1,47 @@
+---
+# - This workflow creates a tag with the format "release@<timestamp>" on the main branch.
+# - It is triggered manually from the GitHub Actions UI.
+# - It is only allowed to run on the main branch and ensures that the tag is created
+#   on the main branch in the checkout step and with a verification step.
+#   This is only to prevent accidental creation of the tag on other branches and cannot be used to prevent malicious creation of the tag.
+
 name: create-release-tag
 
 on:
   workflow_dispatch: ~
-  
+
+concurrency:
+  group: ${{ github.workflow }}
+
 jobs:
   create-release-tag:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Create "release" Tag
+        with:
+          ref: refs/heads/main
+          fetch-depth: 0
+      - name: Verify tag does not exist on current commit
         run: |
-          git tag -f release
-          git push -f origin release
+          git tag --contains HEAD | grep -E "^release@\d+$" && {
+            echo "Tag already exists on current commit"
+            exit 1
+          } || true
+      - name: Verify branch
+        run: |
+          if [[ "${GITHUB_REF}" != "refs/heads/main" ]]; then
+            echo "This workflow can only be run on the main branch"
+            exit 1
+          fi
+      - name: Create tag
+        run: |
+          timestamp=$(date +%s)
+          tag_name="release@${timestamp}"
+          echo "TAG_NAME=${tag_name}" >> "${GITHUB_ENV}"
+      - name: Create "release" tag
+        run: |
+          git tag ${TAG_NAME} ${GITHUB_SHA}
+          git push "refs/tags/${TAG_NAME}"
