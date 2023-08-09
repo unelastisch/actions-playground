@@ -24,14 +24,9 @@ jobs:
         with:
           ref: refs/heads/main
           fetch-depth: 0
-      - name: debug
-        run: |
-          git tag --contains HEAD
-          git tag --contains HEAD | grep -E "^release@\d+$"
-          echo $?
       - name: Verify tag does not exist on current commit
         run: |
-          git tag --contains HEAD | grep -E "^release@\d+$" && {
+          git tag --contains HEAD | grep -P "^release@\d+$" && {
             echo "Tag already exists on current commit"
             exit 1
           } || true
