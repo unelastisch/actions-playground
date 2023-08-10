@@ -46,4 +46,4 @@ jobs:
           git push origin "refs/tags/${TAG_NAME}"
       - if: always()
         run: |
-          echo '${{ toJSON(jobs)}}'
+          echo '${{ toJSON(job)}}'
