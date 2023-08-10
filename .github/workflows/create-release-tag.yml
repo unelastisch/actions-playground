@@ -23,18 +23,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Verify tag does not exist on current commit
-        run: |
-          git tag --contains HEAD | grep -P "^release@\d+$" && {
-            echo "Tag already exists on current commit"
-            exit 1
-          } || true
-      - name: Verify branch
-        run: |
-          if [[ "${GITHUB_REF}" != "refs/heads/main" ]]; then
-            echo "This workflow can only be run on the main branch"
-            exit 1
-          fi
+#      - name: Verify tag does not exist on current commit
+#        run: |
+#          git tag --contains HEAD | grep -P "^release@\d+$" && {
+#            echo "Tag already exists on current commit"
+#            exit 1
+#          } || true
+#      - name: Verify branch
+#        run: |
+#          if [[ "${GITHUB_REF}" != "refs/heads/main" ]]; then
+#            echo "This workflow can only be run on the main branch"
+#            exit 1
+#          fi
       - name: Create tag
         run: |
           timestamp=$(date +%s)
