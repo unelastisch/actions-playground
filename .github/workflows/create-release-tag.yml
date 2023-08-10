@@ -46,4 +46,9 @@ jobs:
           git push origin "refs/tags/${TAG_NAME}"
       - if: always()
         run: |
-          echo '${{ toJSON(job)}}'
+          
+          if [[ "${{ job.status }}" == "success" ]]; then
+            echo "job success"
+          else
+            echo "job failed"
+          fi
