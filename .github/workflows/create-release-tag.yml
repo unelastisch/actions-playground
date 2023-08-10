@@ -46,9 +46,4 @@ jobs:
           git push origin "refs/tags/${TAG_NAME}"
       - if: always()
         run: |
-          
-          if [[ "${{ job.status }}" == "success" ]]; then
-            echo "job success"
-          else
-            echo "job failed"
-          fi
+          echo "${{ job.status == 'success' && 'Created tag `${{ env.TAG_NAME }}`' || 'Creating a release tag failed' }}"
