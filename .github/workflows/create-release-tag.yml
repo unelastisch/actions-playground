@@ -44,3 +44,6 @@ jobs:
         run: |
           git tag ${TAG_NAME} ${GITHUB_SHA}
           git push origin "refs/tags/${TAG_NAME}"
+      - if: always()
+        run: |
+          echo '${{ toJSON(jobs)}}'
