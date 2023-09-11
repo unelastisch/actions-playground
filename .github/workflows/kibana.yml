@@ -1,0 +1,19 @@
+name: test-build-and-publish-kibana-docker-image-action
+
+on:
+  workflow_dispatch: ~
+
+jobs:
+  build-and-publish-kibana-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo '${{ secrets.VAULT_URL }}'
+      - uses: elastic/apm-pipeline-library/.github/actions/build-and-publish-kibana-docker-image@feature/build-and-publish-kibana-image-action
+        id: build-and-publish-kibana-docker-image
+        with:
+          vault-url: ${{ secrets.VAULT_URL }}
+          vault-role-id: ${{ secrets.VAULT_ROLE_ID }}
+          vault-secret-id: ${{ secrets.VAULT_SECRET_ID }}
+          ref: main
+      - run: echo '${{ steps.build-and-publish-kibana-docker-image.outputs.docker-image }}'
