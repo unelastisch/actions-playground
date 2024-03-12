@@ -32,3 +32,4 @@ jobs:
       - name: Print test results
         run: |
          ls
+         cat README.md
