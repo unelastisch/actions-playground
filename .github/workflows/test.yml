@@ -21,3 +21,19 @@ jobs:
           sleep 300
           echo "Running tests"
           echo "Done"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: README.md
+  post-test:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: test-results
+          path: README.md
+      - name: Print test results
+        run: |
+          cat README.md
