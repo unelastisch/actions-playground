@@ -31,4 +31,4 @@ jobs:
           path: README.md
       - name: Print test results
         run: |
-          cat README.md
+         ls
