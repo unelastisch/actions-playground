@@ -16,11 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run tests
-        run: |
-          sleep 300
-          echo "Running tests"
-          echo "Done"
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
