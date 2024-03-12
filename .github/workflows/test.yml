@@ -28,7 +28,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: test-results
-          path: README.md
+          path: .
       - name: Print test results
         run: |
          ls
