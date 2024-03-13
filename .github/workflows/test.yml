@@ -17,10 +17,16 @@ permissions:
 jobs: 
   test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@v3
+      - uses: v1v/otel-upload-test-artifact-action@v2
+        if: always()
+        with:
+          jobName: "macos"
+          stepName: "Run test"
+          path: "README.md"
+          type: "junit"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
