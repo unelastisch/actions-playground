@@ -22,10 +22,12 @@ jobs:
       actions: write
     steps:
       - uses: actions/checkout@v3
+      - name: Run test
+        run: echo "Test"
       - uses: v1v/otel-upload-test-artifact-action@v2
         if: always()
         with:
-          jobName: "macos"
+          jobName: "test"
           stepName: "Run test"
           path: "README.md"
           type: "junit"
